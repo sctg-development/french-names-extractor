@@ -6,6 +6,10 @@
 
 A Rust-based tool that creates a comprehensive database of French first names and last names by processing death records from INSEE (French National Institute of Statistics and Economic Studies).
 
+## Star the project
+
+**If you appreciate my work, please consider giving it a star! 🤩 or a** [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/sctg-development)
+
 ## Motivation
 
 The tool was created to extract and normalize first names and last names from INSEE death records data. The datas was extracted for creating a dataset with realistic names found in France for machine deep learning.
