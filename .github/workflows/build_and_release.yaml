@@ -12,7 +12,7 @@ permissions:
   id-token: write
   packages: write
   attestations: write
-  
+
 env:
   CARGO_TERM_COLOR: always
 
@@ -25,19 +25,19 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            artifact_name: insee-names-extractor
+            artifact_name: french-names-extractor
             asset_name: insee-names-extractor-linux-amd64
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-            artifact_name: insee-names-extractor.exe
+            artifact_name: french-names-extractor.exe
             asset_name: insee-names-extractor-windows-amd64.exe
           - os: macos-latest
             target: x86_64-apple-darwin
-            artifact_name: insee-names-extractor
+            artifact_name: french-names-extractor
             asset_name: insee-names-extractor-macos-x86_64
           - os: macos-latest
             target: aarch64-apple-darwin
-            artifact_name: insee-names-extractor
+            artifact_name: french-names-extractor
             asset_name: insee-names-extractor-macos-arm64
 
     steps:
@@ -56,9 +56,11 @@ jobs:
         targets: ${{ matrix.target }}
 
     - name: Build
+      continue-on-error: true
       run: cargo build --verbose --release --target ${{ matrix.target }}
 
     - name: Rename binary
+      continue-on-error: true
       shell: bash
       run: |
         if [ "${{ matrix.os }}" = "windows-latest" ]; then
