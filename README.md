@@ -2,6 +2,7 @@
   [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
   [![Rust](https://img.shields.io/badge/Rust-1.70%2B-blue.svg)](https://www.rust-lang.org)
   [![Cargo](https://img.shields.io/badge/Cargo-1.70%2B-blue.svg)](https://doc.rust-lang.org/cargo/)
+
 # French Names Database Extractor
 
 A Rust-based tool that creates a comprehensive database of French first names and last names by processing death records from INSEE (French National Institute of Statistics and Economic Studies).
@@ -95,6 +96,26 @@ lastnames.json
 ## Data Source
 
 The death records data is sourced from INSEE's public database: <https://www.insee.fr/fr/information/4769950>
+
+## Machine Learning Dataset
+
+The extracted data can be used to create a machine learning dataset for training models to generate realistic French names.
+Two datasets are provided in Hugging Face's datasets library:
+
+- https://huggingface.co/datasets/eltorio/french_first_names_insee_2024
+```python
+from datasets import load_dataset
+
+ds = load_dataset("eltorio/french_first_names_insee_2024")
+```
+
+- https://huggingface.co/datasets/eltorio/french_last_names_insee_2024  
+  
+```python
+from datasets import load_dataset
+
+ds = load_dataset("eltorio/french_last_names_insee_2024")
+```
 
 ## License
 
