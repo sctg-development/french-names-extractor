@@ -1,3 +1,7 @@
+[![Build status](https://github.com/sctg-development/french-names-extractor/actions/workflows/build_and_release.yaml/badge.svg)](https://github.com/sctg-development/french-names-extractor/actions/workflows/build_and_release.yaml)
+  [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+  [![Rust](https://img.shields.io/badge/Rust-1.70%2B-blue.svg)](https://www.rust-lang.org)
+  [![Cargo](https://img.shields.io/badge/Cargo-1.70%2B-blue.svg)](https://doc.rust-lang.org/cargo/)
 # French Names Database Extractor
 
 A Rust-based tool that creates a comprehensive database of French first names and last names by processing death records from INSEE (French National Institute of Statistics and Economic Studies).
