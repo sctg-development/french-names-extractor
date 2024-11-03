@@ -15,6 +15,10 @@ A Rust-based tool that creates a comprehensive database of French first names an
 
 The tool was created to extract and normalize first names and last names from INSEE death records data. The datas was extracted for creating a dataset with realistic names found in France for machine deep learning.
 
+## Demonstration
+
+A simple demonstration of a use case with the extracted data is available in the `username_generator` directory. The tool generates random usernames using the extracted first names and last names. The names are ponderated by their occurrences in the database. The Vue3 application is deployed on github pages: [https://sctg-development.github.io/french-names-extractor/](https://sctg-development.github.io/french-names-extractor/)
+
 ## Limits
 
 The tool ignores the following cases:
