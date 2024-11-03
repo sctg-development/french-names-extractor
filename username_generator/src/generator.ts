@@ -29,7 +29,7 @@ export interface Lastnames {
  * @returns the normalized name
  */
 export function normalize(name: string): string {
-    return name.normalize("NFD").replace("'","_").replace(" ","_").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    return name.normalize("NFD").replace(/'/g,"_").replace(/ /g,"_").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
 /**
