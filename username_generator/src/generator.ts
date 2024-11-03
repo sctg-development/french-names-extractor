@@ -1,6 +1,7 @@
 import _firstNames from './../../firstnames.json';
 import _lastNames from './../../lastnames.json';
 
+// Exporting the imported data with explicit typecasting to ensure data integrity
 export const firstNames = _firstNames as Firstnames;
 export const lastNames = _lastNames as Lastnames;
 
@@ -29,7 +30,16 @@ export interface Lastnames {
  * @returns the normalized name
  */
 export function normalize(name: string): string {
-    return name.normalize("NFD").replace(/'/g,"_").replace(/ /g,"_").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    // Perform Unicode Normalization to decompose the string into its constituent parts
+    return name.normalize("NFD")
+        // Replace apostrophes with underscores
+        .replace(/'/g, "_")
+        // Replace spaces with underscores
+        .replace(/ /g, "_")
+        // Remove accent characters
+        .replace(/[\u0300-\u036f]/g, "")
+        // Convert the string to lowercase
+        .toLowerCase();
 }
 
 /**
@@ -48,7 +58,7 @@ export function precomputeCumulativeSums(data: (Firstname | Lastname)[]): number
  * @returns a random firstname
  */
 export function randomFirstnamePonderated(data: Firstnames, precomputedTotal: number | undefined): string {
-    // compute the total number of occurrences
+    // If precomputed total is undefined, calculate the total occurrences
     let total = 0;
     if (precomputedTotal === undefined) {
         total = precomputeCumulativeSums(data.firstnames);
@@ -78,7 +88,7 @@ export function randomFirstnamePonderated(data: Firstnames, precomputedTotal: nu
  * @returns a random lastname
  */
 export function randomLastnamePonderated(data: Lastnames, precomputedTotal: number | undefined): string {
-    // compute the total number of occurrences
+    // If precomputed total is undefined, calculate the total occurrences
     let total = 0;
     if (precomputedTotal === undefined) {
         total = precomputeCumulativeSums(data.lastnames);
@@ -108,5 +118,10 @@ export function randomLastnamePonderated(data: Lastnames, precomputedTotal: numb
  * @returns a random username
  */
 export function generateUsername(firstnames: Firstnames, lastnames: Lastnames): string {
-    return `${normalize(randomFirstnamePonderated(firstnames,undefined))}.${normalize(randomLastnamePonderated(lastnames,undefined))}`;
+    // Generate a random first name and normalize it
+    const firstname = normalize(randomFirstnamePonderated(firstnames, undefined));
+    // Generate a random last name and normalize it
+    const lastname = normalize(randomLastnamePonderated(lastnames, undefined));
+    // Combine the first name and last name with a dot in between to form the username
+    return `${firstname}.${lastname}`;
 }
