@@ -7,7 +7,7 @@ export const lastNames = _lastNames as Lastnames;
 
 export interface Firstname {
     firstname: string;
-    sexe?: number;
+    sexe: number;
     occurrences: number;
 }
 
