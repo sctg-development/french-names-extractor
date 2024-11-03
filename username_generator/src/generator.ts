@@ -33,13 +33,29 @@ export function normalize(name: string): string {
 }
 
 /**
+ * Precompute the cumulative sums for the given data
+ * @param data the data to precompute cumulative sums for
+ * @returns the cumulative sums
+ */
+export function precomputeCumulativeSums(data: (Firstname | Lastname)[]): number {
+    return data.reduce((sum, current) => sum + current.occurrences, 0);
+}
+
+/**
  * Returns a random first name from the array ponderated by the occurrences
  * @param data the firstnames data
+ * @param precomputedTotal the precomputed total number of occurrences
  * @returns a random firstname
  */
-export function randomFirstnamePonderated(data: Firstnames): string {
+export function randomFirstnamePonderated(data: Firstnames, precomputedTotal: number | undefined): string {
     // compute the total number of occurrences
-    const total = data.firstnames.reduce((sum, current) => sum + current.occurrences, 0);
+    let total = 0;
+    if (precomputedTotal === undefined) {
+        total = precomputeCumulativeSums(data.firstnames);
+    } else {
+        total = precomputedTotal;
+    }
+
 
     // Generate a random number between 0 and total
     const randomValue = Math.floor(Math.random() * total);
@@ -61,9 +77,14 @@ export function randomFirstnamePonderated(data: Firstnames): string {
  * @param data the lastnames data
  * @returns a random lastname
  */
-export function randomLastnamePonderated(data: Lastnames): string {
+export function randomLastnamePonderated(data: Lastnames, precomputedTotal: number | undefined): string {
     // compute the total number of occurrences
-    const total = data.lastnames.reduce((sum, current) => sum + current.occurrences, 0);
+    let total = 0;
+    if (precomputedTotal === undefined) {
+        total = precomputeCumulativeSums(data.lastnames);
+    } else {
+        total = precomputedTotal;
+    }
 
     // Generate a random number between 0 and total
     const randomValue = Math.floor(Math.random() * total);
@@ -87,5 +108,5 @@ export function randomLastnamePonderated(data: Lastnames): string {
  * @returns a random username
  */
 export function generateUsername(firstnames: Firstnames, lastnames: Lastnames): string {
-    return `${normalize(randomFirstnamePonderated(firstnames))}.${normalize(randomLastnamePonderated(lastnames))}`;
+    return `${normalize(randomFirstnamePonderated(firstnames,undefined))}.${normalize(randomLastnamePonderated(lastnames,undefined))}`;
 }
