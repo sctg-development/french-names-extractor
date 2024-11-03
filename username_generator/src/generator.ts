@@ -2,8 +2,8 @@ import _firstNames from './../../firstnames.json';
 import _lastNames from './../../lastnames.json';
 
 // Exporting the imported data with explicit typecasting to ensure data integrity
-export const firstNames = _firstNames as Firstnames;
-export const lastNames = _lastNames as Lastnames;
+export const FirstNames = _firstNames as Firstnames;
+export const LastNames = _lastNames as Lastnames;
 
 export interface Firstname {
     firstname: string;
